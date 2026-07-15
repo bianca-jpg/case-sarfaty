@@ -63,5 +63,5 @@ A aplicação ficará disponível em http://localhost:8000.
 - backend/: API FastAPI e lógica de classificação
 - frontend/: interface web estática
 - infra/: arquivos de containerização
-- 
+  
 equirements.txt: dependências do projeto
