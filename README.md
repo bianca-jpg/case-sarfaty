@@ -60,8 +60,8 @@ A aplicação ficará disponível em http://localhost:8000.
 
 ## Estrutura do repositório
 
-- ackend/: API FastAPI e lógica de classificação
-- rontend/: interface web estática
+- backend/: API FastAPI e lógica de classificação
+- frontend/: interface web estática
 - infra/: arquivos de containerização
 - 
 equirements.txt: dependências do projeto
