@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: ../                  # O contexto de build é a raiz do projeto
+      dockerfile: infra/dockerfile  # Onde está o Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../backend/.env                # Caminho atualizado para o .env
+    volumes:
+      - ../:/app

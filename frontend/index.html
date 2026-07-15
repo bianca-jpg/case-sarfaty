@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triagem IA - Grupo Sarfaty</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background 0.3s; }
+        button:hover { background-color: #2980b9; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .badge-alto { background-color: #d4edda; color: #155724; }
+        .badge-médio { background-color: #fff3cd; color: #856404; }
+        .badge-baixo { background-color: #f8d7da; color: #721c24; }
+        #loading { display: none; color: #3498db; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>POC Triagem Inteligente</h1>
+    
+    <div class="grid">
+        <div>
+            <label>Carregar Exemplo Próprio:</label>
+            <select id="exampleSelect" onchange="loadExample()">
+                <option value="">Selecione um exemplo...</option>
+            </select>
+
+            <label>Assunto:</label>
+            <input type="text" id="assunto" placeholder="Ex: Solicitação de crédito">
+
+            <label>Mensagem:</label>
+            <textarea id="mensagem" rows="4" placeholder="Digite a mensagem do cliente..."></textarea>
+
+            <button onclick="processarMensagem()">Analisar com IA</button>
+            <div id="loading">Processando via Gemini AI... aguarde.</div>
+        </div>
+        <div>
+            <label>JSON de Saída (Preview):</label>
+            <pre id="jsonOutput" style="background: #2d2d2d; color: #00ff00; padding: 15px; border-radius: 4px; height: 265px; overflow: auto; margin: 0; font-size: 13px;">{}</pre>
+        </div>
+    </div>
+
+    <h2>Resultados Processados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Empresa</th>
+                <th>CNPJ</th>
+                <th>Ação</th>
+                <th>Área Indicada</th>
+                <th>Confiança</th>
+                <th>Justificativa</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTable">
+            <!-- Resultados aparecem aqui -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let exemplos = [];
+
+    // Carrega os exemplos do backend ao iniciar
+    fetch('/api/exemplos')
+        .then(res => res.json())
+        .then(data => {
+            exemplos = data;
+            const select = document.getElementById('exampleSelect');
+            data.forEach((ex, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.textContent = `Ex ${ex.id}: ${ex.assunto}`;
+                select.appendChild(opt);
+            });
+        });
+
+    function loadExample() {
+        const index = document.getElementById('exampleSelect').value;
+        if (index !== "") {
+            document.getElementById('assunto').value = exemplos[index].assunto;
+            document.getElementById('mensagem').value = exemplos[index].mensagem;
+        }
+    }
+
+    async function processarMensagem() {
+        const assunto = document.getElementById('assunto').value;
+        const mensagem = document.getElementById('mensagem').value;
+        const index = document.getElementById('exampleSelect').value;
+        const id = index !== "" ? exemplos[index].id : Math.floor(Math.random() * 1000) + 10;
+
+        if(!mensagem) return alert("Preencha a mensagem!");
+
+        document.getElementById('loading').style.display = 'block';
+
+        try {
+            const res = await fetch('/api/classificar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, assunto, mensagem })
+            });
+
+            const data = await res.json();
+            document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 2);
+            adicionarNaTabela(data);
+        } catch (error) {
+            alert("Erro ao processar: " + error.message);
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+
+    function adicionarNaTabela(data) {
+        const tbody = document.getElementById('resultsTable');
+        const tr = document.createElement('tr');
+
+        const empresa = data.empresa ? data.empresa : '-';
+        const cnpj = data.cnpj ? data.cnpj : '-';
+        const acao = data.proxima_acao ? data.proxima_acao : '-';
+        const area = data.area_sugerida ? data.area_sugerida : '-';
+        const confiancaClass = `badge badge-${data.confianca}`;
+
+        tr.innerHTML = `
+            <td>${data.id}</td>
+            <td><strong>${data.tipo_solicitacao}</strong></td>
+            <td>${empresa}</td>
+            <td>${cnpj}</td>
+            <td>${acao}</td>
+            <td>${area}</td>
+            <td><span class="${confiancaClass}">${data.confianca}</span></td>
+            <td>${data.justificativa}</td>
+        `;
+        // Adiciona no topo
+        tbody.insertBefore(tr, tbody.firstChild);
+    }
+</script>
+</body>
+</html>

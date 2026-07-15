@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "assunto": "Interesse em crédito para empresa",
+    "mensagem": "Olá, somos da Alfa Comércio LTDA e gostaríamos de entender as opções de crédito para capital de giro. Nosso CNPJ é 12.345.678/0001-99."
+  },
+  {
+    "id": 2,
+    "assunto": "Atualização cadastral",
+    "mensagem": "Bom dia, precisamos atualizar os dados cadastrais da empresa Beta Transportes. Houve alteração no endereço e no quadro societário."
+  },
+  {
+    "id": 3,
+    "assunto": "Análise de contrato social",
+    "mensagem": "Prezados, segue o contrato social atualizado da Gama Serviços para continuidade da análise."
+  },
+  {
+    "id": 4,
+    "assunto": "Segunda via",
+    "mensagem": "Boa tarde, poderiam enviar novamente a segunda via do documento referente à nossa operação? Não localizamos o arquivo anterior."
+  },
+  {
+    "id": 5,
+    "assunto": "Manutenção de notebook",
+    "mensagem": "Vocês fazem manutenção de notebook? Estou procurando assistência técnica."
+  },
+  {
+    "id": 6,
+    "assunto": "Dúvida sobre serviço",
+    "mensagem": "Boa tarde, tudo bem? Estou com uma dificuldade na minha empresa e gostaria de saber se vocês podem me ajudar."
+  },
+  {
+    "id": 7,
+    "assunto": "Solicitação rápida",
+    "mensagem": "Olá, precisamos de ajuda com algo aqui. Pode olhar por favor? Não sei exatamente como explicar, mas é importante."
+  },
+  {
+    "id": 8,
+    "assunto": "Pedido de orientação",
+    "mensagem": "Bom dia, recebi um e-mail e queria saber o que fazer. Não tenho certeza se é para falar com vocês ou com outra área."
+  },
+  {
+    "id": 9,
+    "assunto": "Problema sem detalhes",
+    "mensagem": "Estou com um problema e preciso resolver isso o quanto antes. Talvez seja algo relacionado a documentos ou cadastro."
+  },
+  {
+    "id": 10,
+    "assunto": "Mensagem vaga",
+    "mensagem": "Olá, eu gostaria de uma solução para uma situação que surgiu. Pode me orientar com isso?"
+  },
+  {
+    "id": 11,
+    "assunto": "Consulta sem contexto",
+    "mensagem": "Boa tarde, gostaria de saber se dá para acompanhar isso aqui. Não tenho muitas informações, mas é urgente."
+  },
+  {
+    "id": 12,
+    "assunto": "Interesse em linha de crédito e consultoria",
+    "mensagem": "Olá, gostaria de entender melhor as diferentes linhas de crédito disponíveis. Preciso saber qual seria mais adequada para a situação da nossa empresa antes de formalizar uma solicitação."
+  },
+  {
+    "id": 13,
+    "assunto": "Envio e confirmação de documentos",
+    "mensagem": "Bom dia, estou enviando os documentos solicitados para a análise da operação. Gostaria de confirmar se vocês receberam tudo corretamente e qual é o próximo passo."
+  },
+  {
+    "id": 14,
+    "assunto": "Problema na operação ativa",
+    "mensagem": "Boa tarde, estou revisando os dados da nossa operação e percebi que alguns valores não batem com o acordado inicialmente. Vocês podem verificar o que aconteceu?"
+  },
+  {
+    "id": 15,
+    "assunto": "Dúvida sobre produtos e serviços",
+    "mensagem": "Olá, tenho algumas perguntas sobre como funcionam os seus serviços. Minha empresa está considerando contratar, mas gostaria de esclarecer alguns pontos primeiro."
+  },
+  {
+    "id": 16,
+    "assunto": "Necessidade de retorno",
+    "mensagem": "Prezados, precisamos do retorno de um documento que enviamos semana passada. Não temos cópia e precisamos dele para dar prosseguimento a um processo aqui."
+  },
+  {
+    "id": 17,
+    "assunto": "Alteração de dados com documentação",
+    "mensagem": "Bom dia, houve uma mudança no responsável pela conta e também estamos atualizando o endereço comercial. Estou enviando os documentos comprobatórios. Qual é o procedimento?"
+  },
+  {
+    "id": 18,
+    "assunto": "Consultoria sobre operações",
+    "mensagem": "Olá, gostaria de falar com alguém da sua equipe sobre as melhores práticas para operações como a nossa. Não é uma dúvida específica, mas sim uma consultoria geral."
+  }
+]
