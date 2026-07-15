@@ -19,11 +19,11 @@ Esta é uma Prova de Conceito (POC) desenvolvida para o processo seletivo de Tra
 
 1. Clone este repositório.
 2. Crie o arquivo de ambiente baseado no exemplo:
-   `ash
+   `bash
    copy backend\.env.example backend\.env
    `
    Em sistemas Linux/macOS, use:
-   `ash
+   `bash
    cp backend/.env.example backend/.env
    `
 3. Edite o arquivo ackend/.env e informe sua chave da Groq:
@@ -36,13 +36,13 @@ Esta é uma Prova de Conceito (POC) desenvolvida para o processo seletivo de Tra
 
 Instale as dependências:
 
-`ash
+`bash
 pip install -r requirements.txt
 `
 
 Inicie a aplicação:
 
-`ash
+`bash
 uvicorn backend.main:app --host 0.0.0.0 --port 8000
 `
 
@@ -52,7 +52,7 @@ A aplicação ficará disponível em http://localhost:8000.
 
 Na raiz do projeto, execute:
 
-`ash
+`bash
 docker compose -f infra/docker-compose.yml up --build
 `
 
@@ -63,4 +63,5 @@ A aplicação ficará disponível em http://localhost:8000.
 - ackend/: API FastAPI e lógica de classificação
 - rontend/: interface web estática
 - infra/: arquivos de containerização
-- equirements.txt: dependências do projeto
+- 
+equirements.txt: dependências do projeto
